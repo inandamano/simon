@@ -17,7 +17,11 @@ body {
 
 }
 
-.btn {
+.row {
+  justify-content: center;
+}
+
+.mybtn {
   margin: 25px;
   display: inline-block;
   height: 200px;
