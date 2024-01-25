@@ -4,20 +4,27 @@ var buttonColours = ["red", "blue", "green", "yellow"];
 var gameStarted = false;
 var level = 0;
 
-$(document).on("keydown", function() {
+$("#sbtn").on("click", function() {
     if (!gameStarted) { 
         $("h1").text("Level " + level);
         nextSequence(level);
         gameStarted = true;
+        $("#sbtn").html("Start Over");
+    } else {
+        $("#sbtn").html("Start");
+        $("h1").text("Press Start Key to Play");
+        startOver();
     };
 })
 
-$(".btn").on("click", function() {        
-    var userChosenColour = this.id;
-    userClickedPattern.push(userChosenColour);
-    playSound(userChosenColour);
-    animatePress(userChosenColour);
-    checkanswer(userClickedPattern.length - 1);
+$(".mybtn").on("click", function() {      
+    if (gameStarted) { 
+        var userChosenColour = this.id;
+        userClickedPattern.push(userChosenColour);
+        playSound(userChosenColour);
+        animatePress(userChosenColour);
+        checkanswer(userClickedPattern.length - 1);
+    }
 });
 
 function nextSequence(level) {
@@ -60,7 +67,7 @@ function checkanswer(currentLevel){
         setTimeout(function () {
             $("body").removeClass("game-over")
         }, 200);
-        $("h1").text("Game Over, Press A Key to Start");
+        $("h1").text("Game Over, Start Over to Play");
         startOver();
     }
 }
